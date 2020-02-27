@@ -1,6 +1,6 @@
 <template>
-    <div class="goods-item">
-      <img :src="goodsItem.show.img" alt="">
+    <div class="goods-item" @click="itemClick">
+      <img :src="goodsItem.show.img" alt="" @load="imageload">
       <div class="goods-info">
         <p>
         {{goodsItem.title}}
@@ -20,6 +20,19 @@
         default(){
           return {}
         }
+      }
+    },
+    data(){
+      return {
+        timeStamp:null
+      }
+    },
+    methods:{
+      imageload(){
+          this.$bus.$emit('itemImageLoad')
+      },
+      itemClick(){
+        console.log('itemClick')
       }
     }
   }
